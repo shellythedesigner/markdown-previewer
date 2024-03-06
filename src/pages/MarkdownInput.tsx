@@ -4,13 +4,14 @@
 // onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 // destructure the props
 // pass the props (on change and value to the StyledTextArea styled component)
-import React from "react";
-import styled from "styled-components";
 
-interface MarkdownInputProps {
-  handleChangeEvent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  value: string;
-}
+import styled from "styled-components";
+import { useMarkdownStore } from "../store/useMarkdownStore";
+
+// interface MarkdownInputProps {
+//   handleChangeEvent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+//   value: string;
+// }
 
 const StyledTextArea = styled.textarea`
   width: 100%;
@@ -24,12 +25,14 @@ const InputContainer = styled.div`
   height: 500px;
 `;
 
-const MarkdownInput = ({ handleChangeEvent, value }: MarkdownInputProps) => {
+const MarkdownInput = () => {
+  const { markdown, setMarkdown } = useMarkdownStore();
+
   return (
     <InputContainer>
       <StyledTextArea
-        onChange={handleChangeEvent}
-        value={value}
+        onChange={(e) => setMarkdown(e.target.value)}
+        value={markdown}
       ></StyledTextArea>
     </InputContainer>
   );

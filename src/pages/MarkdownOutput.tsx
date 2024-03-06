@@ -3,22 +3,25 @@
 
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
+import { useMarkdownStore } from "../store/useMarkdownStore";
 
-interface MarkdownOutputProps {
-  markdown: string;
-}
+// interface MarkdownOutputProps {
+//   markdown: string;
+// }
 
 const OutputContainer = styled.div`
   width: 40%;
-  height: 100%
+  height: 100%;
   display: flex;
-  flex-flow: row end;
+  flex-flow: row wrap;
 `;
 
 // Create a Output container styled component which is a div
 // create the interface for the props
 // destructure the props
-const MarkdownOutput = ({ markdown }: MarkdownOutputProps) => {
+const MarkdownOutput = () => {
+  const { markdown } = useMarkdownStore();
+
   // return the OutputContainer with <ReactMarkdown>{markdown}</ReactMarkdown> as a child
   return (
     <OutputContainer>
